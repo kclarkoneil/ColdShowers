@@ -59,7 +59,7 @@ class ActivityGenerator: NSObject {
     var firstArray = [(String?, NSArray?, Int64)]()
         
         for activity in baseArray {
-            dynamicPreference = activity.occurance
+            dynamicPreference = activity.userPriority
             let intensityDifference = abs(activity.intensity - initialIntensity)
             var previousActivityPreference:Int64 = 0
             
@@ -82,14 +82,25 @@ class ActivityGenerator: NSObject {
             //Populate an array with a number of versions, equal to dynamic preference score, of each potential element.
             let firstElement = (activity.name, activity.areaOfBody, dynamicPreference)
             let count = Int(firstElement.2)
+            print("\(String(describing: firstElement.0))")
+            print("\(String(describing: firstElement.1))")
+            print("\(firstElement.2)")
             if count > 0 && count <= 20 {
             for _ in 0..<count {
+                
                 firstArray.append(firstElement)
             }
             }
-                else {
+                else if count < 1 {
+                
                     firstArray.append(firstElement)
                 }
+            else if count > 20 {
+                for _ in 0..<20 {
+                    
+                    firstArray.append(firstElement)
+                }
+            }
             }
         
             //Select element at random from this new array, add it to activity array, and run activity again
@@ -97,14 +108,10 @@ class ActivityGenerator: NSObject {
         if let firstActivityName = firstArray[randomNumber].0 {
         addToArrayByName(firstArray: baseArray, secondArray: &previousActivities, name: firstActivityName)
             }
-        
         generateActivity(previousActivities: &previousActivities, activityCount: activityCount)
         }
         else {
             return
     }
-   
 }
-
-
 }

@@ -11,13 +11,7 @@ import CoreData
 
 class ActivityTimeManager: NSObject {
 
-  var hour = 00
-  var minutes = 15
-  var seconds = 00
-  
-  var context:NSManagedObjectContext?
-  
-  var times: [ActivityTimes] = []
+    var context:NSManagedObjectContext?
     var desiredIntensity: [UserDesiredIntensity] = []
   
   override init() {
@@ -28,7 +22,6 @@ class ActivityTimeManager: NSObject {
     
     context = appDelegate.persistentContainer.viewContext
     
-   
     let intensityRequest = NSFetchRequest<UserDesiredIntensity>(entityName: "UserDesiredIntensity")
    // let allTimes = NSFetchRequest<ActivityTimes>(entityName: "ActivityTimes")
     

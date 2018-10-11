@@ -65,9 +65,9 @@ class CalendarViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    //        UNUserNotificationCenter.current().delegate = self
+    
     daysOfTheWeek.removeAll()
-    print("when is this called")
+    
     
     // Do any additional setup after loading the view.
   }
@@ -102,7 +102,7 @@ class CalendarViewController: UIViewController {
         request(false)
         
         let alert = UIAlertController(title: "Permission Denied",
-                                      message: "Notification access denied, would you like to enable?",
+                                      message: "Notification access denied, enable in settings to use schedule function",
                                       preferredStyle: UIAlertControllerStyle.alert);
         self.present(alert, animated: true, completion: nil)
         
@@ -182,6 +182,12 @@ class CalendarViewController: UIViewController {
       let index = daysOfTheWeek.index(of: 1)
       daysOfTheWeek.remove(at: index!)
     }
+    if daysOfTheWeek.count == 0 {
+        scheduleSaveButton.isEnabled = false
+    }
+    else {
+        scheduleSaveButton.isEnabled = true
+    }
   }
   
   @IBAction func mondayButtonPressed(_ sender: UIButton) {
@@ -192,6 +198,12 @@ class CalendarViewController: UIViewController {
     else {
       let index = daysOfTheWeek.index(of: 2)
       daysOfTheWeek.remove(at: index!)
+    }
+    if daysOfTheWeek.count == 0 {
+        scheduleSaveButton.isEnabled = false
+    }
+    else {
+        scheduleSaveButton.isEnabled = true
     }
   }
   
@@ -204,6 +216,12 @@ class CalendarViewController: UIViewController {
       let index = daysOfTheWeek.index(of: 3)
       daysOfTheWeek.remove(at: index!)
     }
+    if daysOfTheWeek.count == 0 {
+        scheduleSaveButton.isEnabled = false
+    }
+    else {
+        scheduleSaveButton.isEnabled = true
+    }
   }
   
   @IBAction func wednesdayButtonPressed(_ sender: UIButton) {
@@ -215,6 +233,12 @@ class CalendarViewController: UIViewController {
       let index = daysOfTheWeek.index(of: 4)
       daysOfTheWeek.remove(at: index!)
     }
+    if daysOfTheWeek.count == 0 {
+        scheduleSaveButton.isEnabled = false
+    }
+    else {
+        scheduleSaveButton.isEnabled = true
+    }
   }
   @IBAction func thursdayButtonPressed(_ sender: UIButton) {
     thursdayButton.isSelected = !thursdayButton.isSelected
@@ -224,6 +248,12 @@ class CalendarViewController: UIViewController {
     else {
       let index = daysOfTheWeek.index(of: 5)
       daysOfTheWeek.remove(at: index!)
+    }
+    if daysOfTheWeek.count == 0 {
+        scheduleSaveButton.isEnabled = false
+    }
+    else {
+        scheduleSaveButton.isEnabled = true
     }
   }
   @IBAction func fridayButtonPressed(_ sender: UIButton) {
@@ -235,6 +265,12 @@ class CalendarViewController: UIViewController {
       let index = daysOfTheWeek.index(of: 6)
       daysOfTheWeek.remove(at: index!)
     }
+    if daysOfTheWeek.count == 0 {
+        scheduleSaveButton.isEnabled = false
+    }
+    else {
+        scheduleSaveButton.isEnabled = true
+    }
   }
   @IBAction func saturdayButtonPressed(_ sender: UIButton) {
     saturdayButton.isSelected = !saturdayButton.isSelected
@@ -244,6 +280,12 @@ class CalendarViewController: UIViewController {
     else {
       let index = daysOfTheWeek.index(of: 7)
       daysOfTheWeek.remove(at: index!)
+    }
+    if daysOfTheWeek.count == 0 {
+        scheduleSaveButton.isEnabled = false
+    }
+    else {
+        scheduleSaveButton.isEnabled = true
     }
   }
   
@@ -261,13 +303,6 @@ class CalendarViewController: UIViewController {
     var adjustedTimeString = String()
     
     
-    // example for time formatting
-//    func timeString(time:TimeInterval) -> String {
-//      let hours = Int(time) / 3600
-//      let minutes = Int(time) / 60 % 60
-//      let timeString = String(format: "%02d:%02d:%02d", hours, minutes)
-//      return timeString
-//    }
     
     switch hour {
     case 0:
@@ -281,18 +316,6 @@ class CalendarViewController: UIViewController {
     default:
         adjustedTimeString = "Invalid Time"
     }
-    
-//    switch hour {
-//    case 0:
-//      adjustedTimeString = "12:\(minute) AM"
-//    case ..<12:
-//      adjustedTimeString = "\(hour):\(minute) AM"
-//    case ..<24:
-//      adjustedTimeString = "\(hour - 12):\(minute) PM"
-//    default:
-//      adjustedTimeString = "Invalid Time"
-//    }
-    
     
     
     var input: ([DateComponents], Bool, String, Int)
@@ -325,7 +348,7 @@ extension CalendarViewController: UNUserNotificationCenterDelegate {
     
     switch response.notification.request.content.categoryIdentifier {
     case "accept":
-      print("accpeted")
+      print("accepted")
     default:
       //      fatalError(response.notification.request.content.categoryIdentifier)
       print("DEFAULTED \(response.notification.request.content.categoryIdentifier)")

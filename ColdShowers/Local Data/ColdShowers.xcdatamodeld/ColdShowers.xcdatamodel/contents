@@ -1,28 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17E199" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="ActivityTimes" representedClassName="ActivityTimes" syncable="YES" codeGenerationType="class">
-        <attribute name="timeMindfulValue" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="timeStrengthValue" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="timeYogaValue" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-    </entity>
     <entity name="CoreActivity" representedClassName="CoreActivity" syncable="YES" codeGenerationType="class">
         <attribute name="activityTime" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="areaOfBody" optional="YES" attributeType="Transformable" valueTransformerName="[String]" customClassName="NSArray" syncable="YES"/>
-        <attribute name="category" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="instructions" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="intensity" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="occurance" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="originalIndex" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="photo" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="settings" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="userPriority" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="UserDesiredIntensity" representedClassName="UserDesiredIntensity" syncable="YES" codeGenerationType="class">
         <attribute name="desiredIntensity" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ActivityTimes" positionX="-54" positionY="54" width="128" height="90"/>
-        <element name="CoreActivity" positionX="-54" positionY="-9" width="128" height="195"/>
+        <element name="CoreActivity" positionX="-54" positionY="-9" width="128" height="150"/>
         <element name="UserDesiredIntensity" positionX="-54" positionY="54" width="128" height="60"/>
     </elements>
 </model>

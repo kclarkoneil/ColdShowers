@@ -6,6 +6,7 @@
 //  Copyright © 2018 Kit Clark-O'Neil and Nathan Wainwright All rights reserved.
 //
 import UIKit
+import CoreData
 
 class PostActivityViewController: UIViewController {
   
@@ -23,7 +24,7 @@ class PostActivityViewController: UIViewController {
   
   //MARK: properties
   let defaults = UserDefaults.standard
-  
+  var completedActivityList = [String]()
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view.
@@ -45,11 +46,16 @@ class PostActivityViewController: UIViewController {
    */
   
   // MARK: Button Actions
-  @IBAction func activityButtonFinishPressed(_ sender: UIButton) {
-    addNewDashDate()
-    performSegue(withIdentifier: "backHomeSegue", sender: self)
-  }
-  
+    @IBAction func yesButtonPressed(_ sender: UIButton) {
+        
+        addNewDashDate()
+        performSegue(withIdentifier: "backHomeSegue", sender: self)
+    }
+    @IBAction func noButtonPressed(_ sender: UIButton) {
+        addNewDashDate()
+        performSegue(withIdentifier: "backHomeSegue", sender: self)
+    }
+
   //MARK: Dash Handling
   func addNewDashDate() {
     let formatter1 = DateFormatter()
@@ -63,7 +69,6 @@ class PostActivityViewController: UIViewController {
     }
     
     let calendar = NSCalendar.current
-    
     let lastDateString = defaults.string(forKey: "lastActivityListDone")
     
     guard let lastDate = formatter1.date(from: lastDateString ?? formatter1.string(from: Date(timeIntervalSinceReferenceDate:0))) else {
@@ -88,4 +93,23 @@ class PostActivityViewController: UIViewController {
       
     }
   }
-}
+//    func updateUserPriority(didEnjoy: Bool) {
+//        guard let appDelegate =
+//            UIApplication.shared.delegate as? AppDelegate else {
+//                return
+//        }
+//        let context = appDelegate.persistentContainer.viewContext
+//        for name in completedActivityList {
+////        let activityRequest = NSFetchRequest<CoreActivity>(entityName: name)
+//let entity = NSEntityDescription.entity(forEntityName: <#T##String#>, in: <#T##NSManagedObjectContext#>)
+//        do {
+//            if let activity = (try context.fetch(activityRequest))  CoreActivity {
+//            activity.userPriority += 1
+//            }
+//        } catch let error as NSError {
+//            print("Could not fetch. \(error), \(error.userInfo)")
+//        }
+//
+//    }
+    }
+
