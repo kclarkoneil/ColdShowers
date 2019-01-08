@@ -25,12 +25,10 @@
 		A14F762721544F40005BDAF4 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A14F762621544F40005BDAF4 /* Login.storyboard */; };
 		A19BE986215D9C8A00F03CE5 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19BE985215D9C8A00F03CE5 /* ScheduleViewController.swift */; };
 		A19BE988215DA8F100F03CE5 /* AlarmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19BE987215DA8F100F03CE5 /* AlarmCell.swift */; };
-		A1DCC51A216E75310021CDB4 /* ActivitySetGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DCC519216E75310021CDB4 /* ActivitySetGenerator.swift */; };
 		F10DDD142158234E00576F8D /* PreferencesTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10DDD132158234E00576F8D /* PreferencesTableViewCellDelegate.swift */; };
 		F10DDD1821586A6F00576F8D /* ActivityListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10DDD1721586A6F00576F8D /* ActivityListManager.swift */; };
 		F11C6D1E215EF9B60094E99C /* UIColor+AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11C6D1D215EF9B60094E99C /* UIColor+AppColors.swift */; };
 		F11C6D20215EFED60094E99C /* Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11C6D1F215EFED60094E99C /* Border.swift */; };
-		F11DA23E215C497B0066AEF8 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11DA23D215C497B0066AEF8 /* Category.swift */; };
 		F14CF9A921615C3F0005D1D2 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14CF9A821615C3F0005D1D2 /* SoundManager.swift */; };
 		F14CF9AE2161866E0005D1D2 /* ActivityTimePreferenceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14CF9AD2161866E0005D1D2 /* ActivityTimePreferenceTableViewCell.swift */; };
 		F15BD3402162B808000AF03D /* doneActivity.wav in Resources */ = {isa = PBXBuildFile; fileRef = F15BD33F2162B808000AF03D /* doneActivity.wav */; };
@@ -83,12 +81,10 @@
 		A14F762621544F40005BDAF4 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		A19BE985215D9C8A00F03CE5 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		A19BE987215DA8F100F03CE5 /* AlarmCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmCell.swift; sourceTree = "<group>"; };
-		A1DCC519216E75310021CDB4 /* ActivitySetGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitySetGenerator.swift; sourceTree = "<group>"; };
 		F10DDD132158234E00576F8D /* PreferencesTableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesTableViewCellDelegate.swift; sourceTree = "<group>"; };
 		F10DDD1721586A6F00576F8D /* ActivityListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListManager.swift; sourceTree = "<group>"; };
 		F11C6D1D215EF9B60094E99C /* UIColor+AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AppColors.swift"; sourceTree = "<group>"; };
 		F11C6D1F215EFED60094E99C /* Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Border.swift; sourceTree = "<group>"; };
-		F11DA23D215C497B0066AEF8 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		F14CF9A821615C3F0005D1D2 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		F14CF9AD2161866E0005D1D2 /* ActivityTimePreferenceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTimePreferenceTableViewCell.swift; sourceTree = "<group>"; };
 		F15BD33F2162B808000AF03D /* doneActivity.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = doneActivity.wav; sourceTree = "<group>"; };
@@ -275,9 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				A13F6440216319BC00348877 /* ActivityGenerator.swift */,
-				A1DCC519216E75310021CDB4 /* ActivitySetGenerator.swift */,
 				F176BF7E2155D8EF00C0836B /* DefaultSet.swift */,
-				F11DA23D215C497B0066AEF8 /* Category.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -436,10 +430,8 @@
 				F16DECE2215EBE1A00D9B7D1 /* ActivityTimeManager.swift in Sources */,
 				A14F75E6215444E4005BDAF4 /* AppDelegate.swift in Sources */,
 				A14F75EE215444E4005BDAF4 /* ColdShowers.xcdatamodeld in Sources */,
-				F11DA23E215C497B0066AEF8 /* Category.swift in Sources */,
 				A14F7619215446DA005BDAF4 /* HomeScreenViewController.swift in Sources */,
 				A14F761E215447ED005BDAF4 /* PostActivityViewController.swift in Sources */,
-				A1DCC51A216E75310021CDB4 /* ActivitySetGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

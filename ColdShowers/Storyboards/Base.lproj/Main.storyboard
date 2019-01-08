@@ -420,12 +420,6 @@
                                     <action selector="saveButton:" destination="PY9-VP-PkX" eventType="touchUpInside" id="xsZ-cc-wKl"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Note: This will not set an alarm, but just a notification reminder." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cgg-bg-dBa">
-                                <rect key="frame" x="16" y="431" width="343" height="33.5"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
-                                <color key="textColor" red="0.2784313725" green="0.2784313725" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yEe-yC-wnq">
                                 <rect key="frame" x="0.0" y="599" width="375" height="48"/>
                                 <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="30"/>
@@ -437,6 +431,13 @@
                                     <action selector="setupScheduleButtonPressed:" destination="w9t-ZA-WkR" eventType="touchUpInside" id="uEc-mh-M8B"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Duration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQa-kH-NTh">
+                                <rect key="frame" x="16" y="403" width="93" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
+                                <color key="textColor" red="0.2784313725" green="0.2784313725" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -447,15 +448,12 @@
                             <constraint firstItem="yEe-yC-wnq" firstAttribute="width" secondItem="vnB-hp-Vmh" secondAttribute="width" id="5CL-sD-zrK"/>
                             <constraint firstItem="fZO-IP-Bvx" firstAttribute="leading" secondItem="PFL-0t-DA0" secondAttribute="leading" constant="16" id="9gC-Lt-Wiw"/>
                             <constraint firstItem="cgb-kE-U7h" firstAttribute="leading" secondItem="PFL-0t-DA0" secondAttribute="leading" constant="16" id="BXw-e9-5n5"/>
-                            <constraint firstItem="Cgg-bg-dBa" firstAttribute="leading" secondItem="PFL-0t-DA0" secondAttribute="leading" constant="16" id="GGS-8V-Lif"/>
                             <constraint firstItem="fZO-IP-Bvx" firstAttribute="top" secondItem="VR7-dD-7dD" secondAttribute="bottom" constant="8" id="IO2-FI-oLp"/>
-                            <constraint firstItem="Cgg-bg-dBa" firstAttribute="top" secondItem="FOu-pW-bqK" secondAttribute="bottom" constant="36" id="MJP-bs-4ME"/>
                             <constraint firstItem="PFL-0t-DA0" firstAttribute="trailing" secondItem="FOu-pW-bqK" secondAttribute="trailing" constant="16" id="QkR-fY-god"/>
                             <constraint firstItem="VR7-dD-7dD" firstAttribute="top" secondItem="Yey-jp-0Pt" secondAttribute="bottom" constant="8" id="SnY-8p-cmI"/>
                             <constraint firstItem="fZO-IP-Bvx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="PFL-0t-DA0" secondAttribute="leading" id="Swc-wb-Kmy"/>
                             <constraint firstItem="FOu-pW-bqK" firstAttribute="leading" secondItem="PFL-0t-DA0" secondAttribute="leading" constant="16" id="UEY-Bx-MDS"/>
                             <constraint firstItem="Yey-jp-0Pt" firstAttribute="top" secondItem="PFL-0t-DA0" secondAttribute="top" constant="10" id="dMs-Aa-v55"/>
-                            <constraint firstAttribute="trailing" secondItem="Cgg-bg-dBa" secondAttribute="trailing" constant="16" id="fRZ-It-98d"/>
                             <constraint firstItem="VR7-dD-7dD" firstAttribute="trailing" secondItem="PFL-0t-DA0" secondAttribute="trailing" id="qmp-60-Cit"/>
                             <constraint firstItem="1Tb-e7-IMN" firstAttribute="width" secondItem="vnB-hp-Vmh" secondAttribute="width" id="sR1-9r-PwD"/>
                             <constraint firstItem="cgb-kE-U7h" firstAttribute="top" secondItem="fZO-IP-Bvx" secondAttribute="bottom" constant="8" id="tbu-aK-3uu"/>
@@ -483,7 +481,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Fe-eY-3hV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-514" y="730"/>
+            <point key="canvasLocation" x="-514.39999999999998" y="729.98500749625191"/>
         </scene>
         <!--Schedule View Controller-->
         <scene sceneID="UZ6-iF-pOt">

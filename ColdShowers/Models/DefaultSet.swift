@@ -25,21 +25,21 @@ class DefaultSet {
                          areaOfBody: ["chest", "arms"],
                          instructions: "Keep your elbows in as you descend, then at the top, when you think you’ve pushed all the way up, push just a little more and feel your shoulder blades roll around your ribcage.",
                          photo: "pushups",
-                         intensity: 7)
+                         intensity: 10)
         
         _ = CoreActivity(context: context,
                          name: "Sit Ups",
                          areaOfBody: ["core"],
                          instructions: "Lie down on your back, keep your knees bent and your back and feet flat on the mat. Slowly lift your torso and sit up. Return to the starting position by rolling down one vertebrae at a time.",
                          photo: "situps",
-                         intensity: 7)
+                         intensity: 9)
         
         _ = CoreActivity(context: context,
                          name: "Crunches",
                          areaOfBody: ["stomach"],
                          instructions: "Lie down on the mat, keep your knees bent, your back and feet flat, and your hands supporting your head. Lift your shoulders, squeeze your abdominal muscles and hold it for one to two seconds. Slowly return to the starting position and repeat until set is complete.",
                          photo: "crunches",
-                         intensity: 7)
+                         intensity: 8)
         
         _ = CoreActivity(context: context,
                          name: "Leg Lifts",
@@ -90,7 +90,7 @@ class DefaultSet {
                          photo:"hipthigh",
                          intensity: 7)
         
-        // mindful category is Int == 1
+      
         _ = CoreActivity(context: context,
                          name: "Focus on a Single Minute",
                          areaOfBody: ["mind","soul"],
@@ -108,56 +108,56 @@ class DefaultSet {
         
         _ = CoreActivity(context: context,
                          name: "Band of Light",
-                         areaOfBody: ["mind","soul"],
+                         areaOfBody: [],
                          instructions: "Find a comfortable place to sit where you won’t be distracted.  Use your imagination to envision a narrow band of white light encircling the top of your head like a halo.  Now imagine this band of light slowly moving down your body, becoming mindfully aware of the physical sensations of each part of your body as the band of light progresses down.  If your attention wanders, just gently direct it back to the physical sensations you experience as the light moves from the top of your head all the way down to your toes.",
                          photo:"mindful",
                          intensity: 1)
         
         _ = CoreActivity(context: context,
                          name: "Inner-Outer Experience",
-                         areaOfBody: ["mind","soul"],
+                         areaOfBody: [],
                          instructions: "Try shifting your attention back and forth between your internal experience (i.e., bodily sensations, thoughts, and feelings) and your external experience (i.e., what you notice with your eyes, ears, nose, and sense of touch).",
                          photo:"mindful",
                          intensity: 1)
         
         _ = CoreActivity(context: context,
                          name: "Record Three Minutes of Thoughts",
-                         areaOfBody: ["mind","soul"],
+                         areaOfBody: [],
                          instructions: "Try setting a timer for three minutes and simply begin to write down every thought that goes through your mind on a piece of paper.  Don’t try to edit your thoughts or write them out word for word, just record each idea or concept that occurs to you.  An example of a thought might be about an important upcoming presentation. Rather than writing out specific details about the presentation, simply write “presentation.”  See how many thoughts you can record in three minutes, no matter how small or seemingly unimportant.  When you are finished, count the number of thoughts that you had in those three minutes and multiply that number by twenty to get a sense of how many thoughts you tend to have in a whole hour.",
                          photo:"mindful",
                          intensity: 1)
         
         _ = CoreActivity(context: context,
                          name: "Thought Defusion",
-                         areaOfBody: ["mind","soul"],
+                         areaOfBody: [],
                          instructions: "Thought defusion can help you mindfully observe these distressing thoughts without getting bogged down by them.  Ultimately, it can allow you the freedom to consciously select which thoughts you wish to focus on and which thoughts you would like to let go. The idea of this exercise is to visualize your thoughts (e.g., as pictures, words, or symbols) harmlessly floating away from you.  Try imagining your thoughts as leaves floating past you on a slowly moving river.  If any particular thoughts keep coming up, just allow them to pass by again – notice them, observe them, and let them go.",
                          photo:"mindful",
                          intensity: 1)
         
         _ = CoreActivity(context: context,
                          name: "Describe Your Emotion",
-                         areaOfBody: ["mind","soul"],
+                         areaOfBody: [],
                          instructions: "Try picking an emotion – it can be pleasant or unpleasant, but not so overwhelming that you worry about feeling out of control.  Ideally, choose an emotion that you are experiencing right now.  Once you have an emotion in mind, write it down on a piece of paper.  Begin by naming the emotion and then continue with the exercise by drawing a picture that you believe represents this emotion for you. Next, try writing down a related action and sound for the emotion.  Notice what you are experiencing throughout the exercise.  If you feel overwhelmed at any point, pause momentarily and bring your focus gently back to the exercise.",
                          photo:"mindful",
                          intensity: 1)
         
         _ = CoreActivity(context: context,
                          name: "Focus Shifting",
-                         areaOfBody: ["mind","soul"],
+                         areaOfBody: [],
                          instructions: "Begin by checking in with yourself to identify how you are feeling. If you think you’re feeling “nothing,” try giving that emotional experience a label … it could even be “bored” or “content.”  Close your eyes and bring your attention towards your current emotional experience – what would this emotion look like if it was an object?  Imagine this object.  Now, open your eyes and redirect your focus towards a physical object in the room.  Mindfully observe this object.  If your attention begins to wander, just gently bring it back to the exercise. Return your focus towards your internal emotional experience.  Next, shift your mindful awareness towards another sensory experience in the room – perhaps noticing a particular sound or smell. ",
                          photo:"mindful",
                          intensity: 1)
         
         _ = CoreActivity(context: context,
                          name: "Mindful Breathing",
-                         areaOfBody: ["mind","soul"],
+                         areaOfBody: [],
                          instructions: "To breathe mindfully, focus on three parts of the experience: count your breaths, focus on the physical act of breathing, and be aware of any thoughts that arise while breathing.  Remember what you learned in the thought defusion exercise to let go of distracting thoughts without getting “stuck” on them.",
                          photo:"mindful",
                          intensity: 1)
         
         _ = CoreActivity(context: context,
                          name: "Mindful Seeing",
-                         areaOfBody: ["mind","soul"],
+                         areaOfBody: [],
                          instructions: "Find a space at a window where there are sights to be seen outside. Look at everything there is to see.  Avoid labeling and categorizing what you see outside the window; instead of thinking “bird” or “stop sign”, try to notice the colors, the patterns, or the textures. Pay attention to the movement of the grass or leaves in the breeze, notice the many different shapes present in this small segment of the world you can see.  Try to see the world outside the window from the perspective of someone unfamiliar with these sights. Be observant, but not critical.  Be aware, but not fixated. If you become distracted, gently pull your mind away from those thoughts and notice a color or shape again to put you back in the right frame of mind.",
                          photo:"mindful",
                          intensity: 1)

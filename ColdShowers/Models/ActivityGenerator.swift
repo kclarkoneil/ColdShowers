@@ -11,8 +11,10 @@ import CoreData
 class ActivityGenerator: NSObject {
     
     var baseArray = [CoreActivity]()
-    var initialIntensity = Int64()
+    var intensity = Int64()
+    var totalRoutineTime:Int64 = 0
     var context: NSManagedObjectContext?
+
     override init() {
         
         guard let appDelegate =
@@ -26,15 +28,16 @@ class ActivityGenerator: NSObject {
         
         do {
             let activity = (try context?.fetch(activityRequest))!
-            let intensity = (try context?.fetch(intensityRequest))!
+            let storedIntensity = (try context?.fetch(intensityRequest))!
             
             baseArray = activity
-            initialIntensity = intensity[0].desiredIntensity
+            intensity = storedIntensity[0].desiredIntensity
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
     }
     func addToArrayByName (firstArray: [CoreActivity], secondArray: inout [CoreActivity], name: String) {
+        
         
         for activity in firstArray {
             guard let activityName = activity.name else {
@@ -42,6 +45,7 @@ class ActivityGenerator: NSObject {
             }
             if activityName == name {
                 secondArray.append(activity)
+                totalRoutineTime += activity.activityTime
                 return
             }
             
@@ -52,15 +56,15 @@ class ActivityGenerator: NSObject {
     
     func generateActivity(previousActivities: inout [CoreActivity], activityCount: Int) {
         
-        if previousActivities.count <= activityCount {
+        if totalRoutineTime < 900 {
             var dynamicPreference: Int64
             
-            //Generate array with adjusted preferences based on desired intensity
+            //Generate array and adjust preferences based on desired intensity
             var firstArray = [(String?, NSArray?, Int64)]()
             
             for activity in baseArray {
                 dynamicPreference = activity.userPriority
-                let intensityDifference = abs(activity.intensity - initialIntensity)
+                let intensityDifference = abs(activity.intensity - intensity)
                 var previousActivityPreference:Int64 = 0
                 
                 //Check previous activities to favour activities with new areas of the body
@@ -72,41 +76,47 @@ class ActivityGenerator: NSObject {
                                 previousActivityPreference += 1
                             }
                         }
-                        
                     }
                 }
                 //Apply differences to new preference rating
-                dynamicPreference -= intensityDifference
+                
                 dynamicPreference -= previousActivityPreference
                 
                 //Populate an array with a number of versions, equal to dynamic preference score, of each potential element.
                 let firstElement = (activity.name, activity.areaOfBody, dynamicPreference)
                 let count = Int(firstElement.2)
                 
+                if intensityDifference < 2 {
+                    
                 if count > 0 && count <= 20 {
                     for _ in 0..<count {
                         
                         firstArray.append(firstElement)
                         print("\(String(describing: firstElement.0))")
+                        print("\(dynamicPreference)")
                         
                     }
                 }
-                else if count < 1 {
-                    
-                    firstArray.append(firstElement)
-                }
+
                 else if count > 20 {
                     for _ in 0..<20 {
                         
                         firstArray.append(firstElement)
+                    }
+                    }
+                else if count < 1 {
+                    firstArray.append(firstElement)
                     }
                 }
             }
             
             //Select element at random from this new array, add it to activity array, and run activity again
             let randomNumber = Int(arc4random_uniform(UInt32(firstArray.count)))
+            print("\(randomNumber)")
             if let firstActivityName = firstArray[randomNumber].0 {
+
                 addToArrayByName(firstArray: baseArray, secondArray: &previousActivities, name: firstActivityName)
+                
             }
             generateActivity(previousActivities: &previousActivities, activityCount: activityCount)
         }
