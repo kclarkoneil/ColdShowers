@@ -52,14 +52,24 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var thursdayButton: UIButton!
     @IBOutlet weak var fridayButton: UIButton!
     @IBOutlet weak var saturdayButton: UIButton!
-    @IBOutlet weak var durationPickerView: UIPickerView!
+    
     @IBOutlet weak var repeatSwitch: UISwitch!
-    @IBOutlet weak var calenderViewDoneButton: UIButton!
     @IBOutlet weak var scheduleSaveButton: UIButton!
     @IBOutlet weak var scheduleCancelButton: UIButton!
     
-    var daysOfTheWeek = [Int]()
+    @IBOutlet weak var tenButton: UIButton!
+    @IBOutlet weak var fifteenButton: UIButton!
+    @IBOutlet weak var twentyButton: UIButton!
+    @IBOutlet weak var twentyFiveButton: UIButton!
     
+    @IBOutlet weak var intensityOneButton: UIButton!
+    @IBOutlet weak var intensityTwoButton: UIButton!
+    @IBOutlet weak var intensityThreeButton: UIButton!
+    @IBOutlet weak var intensityFourButton: UIButton!
+    
+    var daysOfTheWeek = [Int]()
+    var selectedIntensity = Int()
+    var selectedDuration = Int()
     let timeManager = ActivityTimeManager()
     
     
@@ -110,7 +120,7 @@ class CalendarViewController: UIViewController {
             }
         }
     }
-    func setActivity(alarmComponents: ([DateComponents], Bool, String, Int)) {
+    func setActivity(alarmComponents: ([DateComponents], Bool, String, Int, Int)) {
         //For testing only
         //    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         
@@ -125,12 +135,13 @@ class CalendarViewController: UIViewController {
                     
                     guard let dayNumber = dateComponents.weekday else { fatalError("invalid day")}
                     
-                    guard let day = weekDay.init(rawValue: dayNumber - 1) else { fatalError("invalide date")}
+                    guard let day = weekDay.init(rawValue: dayNumber - 1) else { fatalError("invalid date")}
                     let dayString = day.toString()
                     let timeString = alarmComponents.2
                     let durationString = alarmComponents.3
+                    let intensityString = alarmComponents.4
                     
-                    notificationContent.userInfo = ["Day": dayString, "Time": timeString, "Duration": durationString]
+                    notificationContent.userInfo = ["Day": dayString, "Time": timeString, "Duration": durationString, "Intensity": intensityString]
                     
                     let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: alarmComponents.1)
                     let request = UNNotificationRequest(identifier: "\(dateComponents)", content: notificationContent, trigger: trigger)
@@ -172,7 +183,7 @@ class CalendarViewController: UIViewController {
     @IBAction func scheduleSaveButtonAction(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
-    //Helper function
+    //Days of the week buttons helper function
     func dayOfTheWeekHelper(ButtonPressed: UIButton, dayOfTheWeek: Int) {
     ButtonPressed.isSelected = !ButtonPressed.isSelected
     if ButtonPressed.isSelected {
@@ -189,6 +200,7 @@ class CalendarViewController: UIViewController {
     scheduleSaveButton.isEnabled = true
     }
 }
+    
     
     @IBAction func sundayButtonPressed(_ sender: UIButton) {
        dayOfTheWeekHelper(ButtonPressed: sender, dayOfTheWeek: 1)
@@ -217,8 +229,66 @@ class CalendarViewController: UIViewController {
     @IBAction func saturdayButtonPressed(_ sender: UIButton) {
         dayOfTheWeekHelper(ButtonPressed: sender, dayOfTheWeek: 7)
     }
+    //Button highlighting function
+    func buttonHighlight(buttons: [UIButton]) {
+        for button in buttons {
+            if button.isSelected {
+                button.isSelected = false
+            }
+        }
+    }
     
+    //Duration selection buttons
+    @IBAction func tenButtonPressed(_ sender: UIButton) {
+        tenButton.isSelected = !tenButton.isSelected
+        buttonHighlight(buttons: [fifteenButton, twentyButton, twentyFiveButton])
+        selectedDuration = 10
+    }
+    @IBAction func fifteenButtonPressed(_ sender: UIButton) {
+        fifteenButton.isSelected = !fifteenButton.isSelected
+        buttonHighlight(buttons: [tenButton, twentyButton, twentyFiveButton])
+        selectedDuration = 15
+    }
+    @IBAction func twentyButtonPressed(_ sender: UIButton) {
+        twentyButton.isSelected = !twentyButton.isSelected
+        buttonHighlight(buttons: [tenButton, fifteenButton, twentyFiveButton])
+        selectedDuration = 20
+    }
+    @IBAction func twentyFiveButtonPressed(_ sender: UIButton) {
+        twentyFiveButton.isSelected = !twentyFiveButton.isSelected
+        buttonHighlight(buttons: [tenButton, fifteenButton, twentyButton])
+        selectedDuration = 25
+        
+    }
+    
+    //Intensity selection buttons
+    @IBAction func intensityOneButtonPressed(_ sender: UIButton) {
+        intensityOneButton.isSelected = !intensityOneButton.isSelected
+        buttonHighlight(buttons: [intensityTwoButton, intensityThreeButton, intensityFourButton])
+        selectedIntensity = 1
+    }
+    @IBAction func intensityTwoButtonPressed(_ sender: UIButton) {
+        intensityTwoButton.isSelected = !intensityTwoButton.isSelected
+        buttonHighlight(buttons: [intensityOneButton, intensityThreeButton, intensityFourButton])
+        selectedIntensity = 2
+    }
+    @IBAction func intensityThreeButtonPressed(_ sender: UIButton) {
+        intensityThreeButton.isSelected = !intensityThreeButton.isSelected
+        buttonHighlight(buttons: [intensityOneButton, intensityTwoButton, intensityFourButton])
+        selectedIntensity = 3
+    }
+    @IBAction func intensityFourButtonPressed(_ sender: UIButton) {
+        intensityFourButton.isSelected = !intensityThreeButton.isSelected
+        buttonHighlight(buttons: [intensityOneButton, intensityTwoButton, intensityThreeButton])
+        selectedIntensity = 4
+    }
+    
+    
+    //Create notification and store chosen date, time, intensity and duration as userinfo
     @IBAction func saveButton(_ sender: UIButton) {
+        
+        //Format chosen time and date
+        
         let myTimePicker = DateFormatter()
         myTimePicker.dateFormat = "HH:mm"
         let timeString = myTimePicker.string(from: timePicker.date)
@@ -246,11 +316,12 @@ class CalendarViewController: UIViewController {
         }
         
         
-        var input: ([DateComponents], Bool, String, Int)
+        var input: ([DateComponents], Bool, String, Int, Int)
         input.0 = [DateComponents]()
         input.1 = repeatSwitch.isOn
         input.2 = adjustedTimeString
-        input.3 = 15
+        input.3 = selectedDuration
+        input.4 = selectedIntensity
         // MARK: -- where time for notification is set.
         
         for day in daysOfTheWeek {

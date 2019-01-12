@@ -56,7 +56,9 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     let timeString = request.content.userInfo["Time"] as? String
     let dayString = request.content.userInfo["Day"] as? String
     let durationInt = request.content.userInfo["Duration"] as? Int
-    let durationString = "\(durationInt ?? 15) Minutes"
+    let durationString = "\(durationInt!) Minutes"
+    let intensityInt = request.content.userInfo["Intensity"] as? Int
+    let intensityString = "\(intensityInt!)"
     
     
     cell.dateLabel.text = timeString
