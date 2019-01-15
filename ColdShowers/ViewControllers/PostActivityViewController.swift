@@ -9,43 +9,43 @@ import UIKit
 import CoreData
 
 class PostActivityViewController: UIViewController {
-  
-  //MARK: Storyboard Properties
-  @IBOutlet weak var intensityLabel: UILabel!
-  @IBOutlet weak var intensityButtonLow: UIButton!
-  @IBOutlet weak var intensityButtonMiddle: UIButton!
-  @IBOutlet weak var intensityButtonHigh: UIButton!
-  
-  @IBOutlet weak var enjoymentLabel: UILabel!
-  @IBOutlet weak var enjoymentButtonYes: UIButton!
-  @IBOutlet weak var enjoymentButtonNo: UIButton!
-  
-  @IBOutlet weak var activityButtonFinish: UIButton!
-  
-  //MARK: properties
-  let defaults = UserDefaults.standard
-  var completedActivityList = [String]()
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    // Do any additional setup after loading the view.
-  }
-  
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
-  
-  /*
-   // MARK: - Navigation
-   
-   // In a storyboard-based application, you will often want to do a little preparation before navigation
-   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   // Get the new view controller using segue.destinationViewController.
-   // Pass the selected object to the new view controller.
-   }
-   */
-  
-  // MARK: Button Actions
+    
+    //MARK: Storyboard Properties
+    @IBOutlet weak var intensityLabel: UILabel!
+    @IBOutlet weak var intensityButtonLow: UIButton!
+    @IBOutlet weak var intensityButtonMiddle: UIButton!
+    @IBOutlet weak var intensityButtonHigh: UIButton!
+    
+    @IBOutlet weak var enjoymentLabel: UILabel!
+    @IBOutlet weak var enjoymentButtonYes: UIButton!
+    @IBOutlet weak var enjoymentButtonNo: UIButton!
+    
+    @IBOutlet weak var activityButtonFinish: UIButton!
+    
+    //MARK: properties
+    let defaults = UserDefaults.standard
+    var completedActivityList = [String]()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
+    // MARK: Button Actions
     @IBAction func yesButtonPressed(_ sender: UIButton) {
         
         addNewDashDate()
@@ -55,61 +55,61 @@ class PostActivityViewController: UIViewController {
         addNewDashDate()
         performSegue(withIdentifier: "backHomeSegue", sender: self)
     }
-
-  //MARK: Dash Handling
-  func addNewDashDate() {
-    let formatter1 = DateFormatter()
-    formatter1.dateFormat = "yyyy-MM-dd"
-    formatter1.timeZone = TimeZone.current
-    //    formatter1.timeZone = TimeZone(secondsFromGMT: 0)
     
-    let todayDateString = formatter1.string(from: Date())
-    guard let todayDate = formatter1.date(from: todayDateString) else {
-      fatalError("WAS NOT ABLE TO GET TODAYS DATE")
+    //MARK: Dash Handling
+    func addNewDashDate() {
+        let formatter1 = DateFormatter()
+        formatter1.dateFormat = "yyyy-MM-dd"
+        formatter1.timeZone = TimeZone.current
+        //    formatter1.timeZone = TimeZone(secondsFromGMT: 0)
+        
+        let todayDateString = formatter1.string(from: Date())
+        guard let todayDate = formatter1.date(from: todayDateString) else {
+            fatalError("WAS NOT ABLE TO GET TODAYS DATE")
+        }
+        
+        let calendar = NSCalendar.current
+        let lastDateString = defaults.string(forKey: "lastActivityListDone")
+        
+        guard let lastDate = formatter1.date(from: lastDateString ?? formatter1.string(from: Date(timeIntervalSinceReferenceDate:0))) else {
+            // if error triggered; check data
+            fatalError("NO DATE WAS FOUND")
+        }
+        
+        var currentStreak = defaults.integer(forKey: "currentStreak")
+        var userActivityHistory = defaults.array(forKey: "userActivityHistory") as? [String] ?? []
+        
+        defaults.set(todayDateString, forKey: "lastActivityListDone")
+        
+        let dateBool = calendar.isDate(todayDate, inSameDayAs: lastDate)
+        if dateBool == false {
+            //update state
+            userActivityHistory.append(todayDateString)
+            currentStreak += 1
+            
+            //save state
+            defaults.set(currentStreak, forKey: "currentStreak")
+            defaults.set(userActivityHistory, forKey: "userActivityHistory")
+            
+        }
     }
-    
-    let calendar = NSCalendar.current
-    let lastDateString = defaults.string(forKey: "lastActivityListDone")
-    
-    guard let lastDate = formatter1.date(from: lastDateString ?? formatter1.string(from: Date(timeIntervalSinceReferenceDate:0))) else {
-      // if error triggered; check data
-      fatalError("NO DATE WAS FOUND")
-    }
-    
-    var currentStreak = defaults.integer(forKey: "currentStreak")
-    var userActivityHistory = defaults.array(forKey: "userActivityHistory") as? [String] ?? []
-    
-    defaults.set(todayDateString, forKey: "lastActivityListDone")
-    
-    let dateBool = calendar.isDate(todayDate, inSameDayAs: lastDate)
-    if dateBool == false {
-      //update state
-      userActivityHistory.append(todayDateString)
-      currentStreak += 1
-      
-      //save state
-      defaults.set(currentStreak, forKey: "currentStreak")
-      defaults.set(userActivityHistory, forKey: "userActivityHistory")
-      
-    }
-  }
-//    func updateUserPriority(didEnjoy: Bool) {
-//        guard let appDelegate =
-//            UIApplication.shared.delegate as? AppDelegate else {
-//                return
-//        }
-//        let context = appDelegate.persistentContainer.viewContext
-//        for name in completedActivityList {
-////        let activityRequest = NSFetchRequest<CoreActivity>(entityName: name)
-//let entity = NSEntityDescription.entity(forEntityName: <#T##String#>, in: <#T##NSManagedObjectContext#>)
-//        do {
-//            if let activity = (try context.fetch(activityRequest))  CoreActivity {
-//            activity.userPriority += 1
-//            }
-//        } catch let error as NSError {
-//            print("Could not fetch. \(error), \(error.userInfo)")
-//        }
-//
-//    }
-    }
+    func updateUserPriority(didEnjoy: Bool) {
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                return
+        }
+        let context = appDelegate.persistentContainer.viewContext
+        for name in completedActivityList {
+            let activityRequest = NSFetchRequest<CoreActivity>(entityName: name)
+            let entity = NSEntityDescription.entity(forEntityName: <#T##String#>, in: <#T##NSManagedObjectContext#>)
+            do {
+                if let activity = (try context.fetch(activityRequest))  CoreActivity {
+                    activity.userPriority += 1
+                }
+            } catch let error as NSError {
+                print("Could not fetch. \(error), \(error.userInfo)")
+            }
+            
+        }
+}
 

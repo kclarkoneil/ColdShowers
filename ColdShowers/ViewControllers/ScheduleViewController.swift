@@ -52,31 +52,46 @@ class ScheduleViewController: UIViewController, UITableViewDelegate, UITableView
     guard let cell = tableView.dequeueReusableCell(withIdentifier: "alarmCell", for: indexPath) as? AlarmCell else { fatalError("could not make cell") }
     
     let request = self.myAlarms[indexPath.row] as UNNotificationRequest
-    
+    var durationString:String
+    var intensityString:NSAttributedString
     let timeString = request.content.userInfo["Time"] as? String
     let dayString = request.content.userInfo["Day"] as? String
-    let durationInt = request.content.userInfo["Duration"] as? Int
-    let durationString = "\(durationInt!) Minutes"
-    let intensityInt = request.content.userInfo["Intensity"] as? Int
-    let intensityString = "\(intensityInt!)"
+    if let intensityInt = request.content.userInfo["Intensity"] as? Int, let durationInt = request.content.userInfo["Duration"] as? Int {
+        
+        durationString = "\(durationInt)"
+        
+    switch intensityInt {
+    case 1:
+        let attributes = [NSAttributedStringKey.foregroundColor: UIColor.green]
+        intensityString = NSAttributedString.init(string: "Light", attributes: attributes)
+    case 2:
+        let attributes = [NSAttributedStringKey.foregroundColor: UIColor.cyan]
+        intensityString = NSAttributedString.init(string: "Easy", attributes: attributes)
+    case 3:
+        let attributes = [NSAttributedStringKey.foregroundColor: UIColor.blue]
+        intensityString = NSAttributedString.init(string: "Moderate", attributes: attributes)
+    case 4:
+        let attributes = [NSAttributedStringKey.foregroundColor: UIColor.red]
+        intensityString = NSAttributedString.init(string: "Strenous", attributes: attributes)
+    default:
+        let attributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
+        intensityString = NSAttributedString.init(string: "N/A", attributes: attributes)
+    }
     
     
     cell.dateLabel.text = timeString
     cell.timeLabel.text = dayString
     cell.durationLabel.text = durationString
-    
+    cell.intensityLabel.attributedText = intensityString
+    }
     
     print(request.content.userInfo)
-    
     return cell
   }
   
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     
-    // currently deletes from screen, but not actually from notification center items.
-    
     let identifierString = myAlarms[indexPath.row].identifier
-    
     if editingStyle == .delete {
       self.myAlarms.remove(at: indexPath.row)
       UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifierString])
