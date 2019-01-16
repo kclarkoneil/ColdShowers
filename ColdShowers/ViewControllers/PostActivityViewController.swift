@@ -101,15 +101,20 @@ class PostActivityViewController: UIViewController {
         let context = appDelegate.persistentContainer.viewContext
         for name in completedActivityList {
             let activityRequest = NSFetchRequest<CoreActivity>(entityName: name)
-            let entity = NSEntityDescription.entity(forEntityName: <#T##String#>, in: <#T##NSManagedObjectContext#>)
+            
             do {
-                if let activity = (try context.fetch(activityRequest))  CoreActivity {
-                    activity.userPriority += 1
+               if let activity = (try context.fetch(activityRequest)) as? [CoreActivity] {
+                    if didEnjoy {
+                    activity[0].userPriority += 1
+                    }
+                    else {
+                        activity[0].userPriority -= 1
+                    }
                 }
             } catch let error as NSError {
                 print("Could not fetch. \(error), \(error.userInfo)")
             }
-            
         }
+        appDelegate.saveContext()
 }
-
+}

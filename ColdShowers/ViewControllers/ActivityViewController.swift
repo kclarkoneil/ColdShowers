@@ -80,6 +80,10 @@ class ActivityViewController: UIViewController {
         makeBorder()
         totalTimeLabel.text = timeString(time: (TimeInterval(activityList.count * 90)))
         showActivity()
+        for activity in activityList {
+            print("\(activity.name)")
+            print("\(activity.userPriority)")
+        }
     }
     
     override func didReceiveMemoryWarning() {
