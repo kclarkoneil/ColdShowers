@@ -11,10 +11,7 @@ import CoreData
 class PostActivityViewController: UIViewController {
     
     //MARK: Storyboard Properties
-    @IBOutlet weak var intensityLabel: UILabel!
-    @IBOutlet weak var intensityButtonLow: UIButton!
-    @IBOutlet weak var intensityButtonMiddle: UIButton!
-    @IBOutlet weak var intensityButtonHigh: UIButton!
+    
     
     @IBOutlet weak var enjoymentLabel: UILabel!
     @IBOutlet weak var enjoymentButtonYes: UIButton!
@@ -24,11 +21,12 @@ class PostActivityViewController: UIViewController {
     
     //MARK: properties
     let defaults = UserDefaults.standard
-    var completedActivityList = [String]()
+    var completedActivityList = [CoreActivity]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
     }
+    // Do any additional setup after loading the view.
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -48,10 +46,12 @@ class PostActivityViewController: UIViewController {
     // MARK: Button Actions
     @IBAction func yesButtonPressed(_ sender: UIButton) {
         
+        updateUserPriority(didEnjoy: true)
         addNewDashDate()
         performSegue(withIdentifier: "backHomeSegue", sender: self)
     }
     @IBAction func noButtonPressed(_ sender: UIButton) {
+        updateUserPriority(didEnjoy: false)
         addNewDashDate()
         performSegue(withIdentifier: "backHomeSegue", sender: self)
     }
@@ -99,22 +99,20 @@ class PostActivityViewController: UIViewController {
                 return
         }
         let context = appDelegate.persistentContainer.viewContext
-        for name in completedActivityList {
-            let activityRequest = NSFetchRequest<CoreActivity>(entityName: name)
-            
-            do {
-               if let activity = (try context.fetch(activityRequest)) as? [CoreActivity] {
-                    if didEnjoy {
-                    activity[0].userPriority += 1
-                    }
-                    else {
-                        activity[0].userPriority -= 1
-                    }
-                }
-            } catch let error as NSError {
-                print("Could not fetch. \(error), \(error.userInfo)")
+        for activity in completedActivityList {
+            if didEnjoy {
+                activity.userPriority += 1
+            }
+            else {
+                activity.userPriority -= 1
             }
         }
-        appDelegate.saveContext()
+        do {
+            try context.save()
+        }
+        catch let error as NSError {
+            print("Could not save context error: \(error)")
+        }
+    }
 }
-}
+

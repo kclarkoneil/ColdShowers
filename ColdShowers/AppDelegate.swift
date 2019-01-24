@@ -49,14 +49,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "HomeVC")
     
-    //    if let _ = defaults.value(forKey: "Username") {
-    //      let loginViewCon = storyboard.instantiateViewController(withIdentifier: "LoginVC")
-    //      self.window?.rootViewController = loginViewCon
-    //    } else {
-    //      let signupViewCon = storyboard.instantiateViewController(withIdentifier: "SignUpVC")
-    //      self.window?.rootViewController = signupViewCon
-    //    }
-    
     self.window?.makeKeyAndVisible()
     
     let formatter1 = DateFormatter()
@@ -71,14 +63,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     let calendar = NSCalendar.current
     if calendar.isDateInYesterday(lastDate) {
-      //      print("YES \(todayDate) is after \(String(describing: lastDateString))")
-      //      // DO THIS ONCE WE CONFIRM TODFAY IS JUST AFTER LAST DATE
-      //      var newStreak = defaults.integer(forKey: "currentStreak")
-      //      newStreak += 1
-      //      defaults.set(newStreak, forKey: "currentStreak")
+      
     } else {
-      //      var newStreak = defaults.integer(forKey: "currentStreak")
-      //      newStreak = 0
+      
       defaults.set(0, forKey: "currentStreak")
     }
     return true
@@ -167,9 +154,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     case UNNotificationDefaultActionIdentifier:
       print("Default action")
       let storyboard = UIStoryboard(name: "Activity", bundle: nil)
-      let vc = storyboard.instantiateViewController(withIdentifier: "ActivityVC")
+      if let vc = storyboard.instantiateViewController(withIdentifier: "ActivityVC") as? ActivityViewController {
+      vc.initialIntensity = 3
       self.window?.rootViewController = vc
       self.window?.makeKeyAndVisible()
+        }
     default:
       print("default case hit")
     }

@@ -14,7 +14,7 @@ class ActivityGenerator: NSObject {
     var intensity = Int64()
     var totalRoutineTime:Int64 = 0
     var context: NSManagedObjectContext?
-
+    
     override init() {
         
         guard let appDelegate =
@@ -88,24 +88,21 @@ class ActivityGenerator: NSObject {
                 
                 if intensityDifference < 2 {
                     
-                if count > 0 && count <= 20 {
-                    for _ in 0..<count {
+                    if count > 0 && count <= 20 {
+                        for _ in 0..<count {
+                            
+                            firstArray.append(firstElement)
+                        }
+                    }
                         
+                    else if count > 20 {
+                        for _ in 0..<20 {
+                            
+                            firstArray.append(firstElement)
+                        }
+                    }
+                    else if count < 1 {
                         firstArray.append(firstElement)
-                        print("\(String(describing: firstElement.0))")
-                        print("\(dynamicPreference)")
-                        
-                    }
-                }
-
-                else if count > 20 {
-                    for _ in 0..<20 {
-                        
-                        firstArray.append(firstElement)
-                    }
-                    }
-                else if count < 1 {
-                    firstArray.append(firstElement)
                     }
                 }
             }
@@ -114,7 +111,7 @@ class ActivityGenerator: NSObject {
             let randomNumber = Int(arc4random_uniform(UInt32(firstArray.count)))
             print("\(randomNumber)")
             if let firstActivityName = firstArray[randomNumber].0 {
-
+                
                 addToArrayByName(firstArray: baseArray, secondArray: &previousActivities, name: firstActivityName)
                 
             }

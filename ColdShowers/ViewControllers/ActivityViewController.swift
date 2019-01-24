@@ -18,9 +18,9 @@ class ActivityViewController: UIViewController {
     //MARK: ActivityView Properties
     @IBOutlet weak var activityNameLabel: UILabel!
     @IBOutlet weak var estimatedTimeLabel: UILabel!
-
+    
     @IBOutlet weak var totalTimeLabel: UILabel!
-
+    
     @IBOutlet weak var activityInstructionImage: UIImageView!
     @IBOutlet weak var activityStartButton: UIButton!
     @IBOutlet weak var activityCancelButton: UIButton!
@@ -38,6 +38,7 @@ class ActivityViewController: UIViewController {
     var currentActivity = CoreActivity()
     var activityList = [CoreActivity]()
     var currentActivityIndex: Int = 0
+    var initialIntensity: Int = 0
     
     //MARK: SoundManager
     let soundManager = SoundManager()
@@ -80,6 +81,11 @@ class ActivityViewController: UIViewController {
         makeBorder()
         totalTimeLabel.text = timeString(time: (TimeInterval(activityList.count * 90)))
         showActivity()
+        
+        //Error checking
+        if initialIntensity == 3 {
+        print("Initial intensity value passed")
+        }
         for activity in activityList {
             print("\(activity.name)")
             print("\(activity.userPriority)")
@@ -209,11 +215,9 @@ class ActivityViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        var completedActivityList = [String]()
-        for activity in activityList {
-            completedActivityList.append(activity.name!)
+        
+        if let destinationViewController = segue.destination as? PostActivityViewController {
+            destinationViewController.completedActivityList = activityList
         }
-        let postActivityView = PostActivityViewController()
-        postActivityView.completedActivityList = completedActivityList
     }
 }

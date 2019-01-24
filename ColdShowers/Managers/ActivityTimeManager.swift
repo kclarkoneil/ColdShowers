@@ -40,37 +40,5 @@ class ActivityTimeManager: NSObject {
       print("Could not fetch. \(error), \(error.userInfo)")
     }
     }
- // func all() -> Int {
-   // return Int(times[0].timeMindfulValue) + Int(times[0].timeStrengthValue) + Int(times[0].timeYogaValue)
-
-
-  
-  func getTime(_ category: String) -> Float {
-    var timeValue:Float = 0.0
-    if category == "Average Intensity" {
-        timeValue = Float(desiredIntensity[0].desiredIntensity)
-    }
-    
-    else {
-      timeValue = 666.0
-    }
-    return timeValue
-  }
-  
-  func setTime(_ category: String, value: Float) {
-    
-    if category == "Average Intensity" {
-        desiredIntensity[0].desiredIntensity = Int64(value)
-    }
-    else {
-      fatalError("ERROR WITH CATEGORY OR VALUE")
-    }
-    
-    do {
-      try context?.save()
-    } catch {
-      fatalError("Failed saving")
-    }
-  }
 }
 

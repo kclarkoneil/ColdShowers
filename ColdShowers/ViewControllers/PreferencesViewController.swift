@@ -78,10 +78,7 @@ class PreferencesViewController: UIViewController, UITableViewDelegate, UITableV
             
             
             
-            cell2.activityCategoryNameLabel.text = "Average Intensity"
-            cell2.activityTimeSliderLabel.text = "\(timeManager.getTime("Average Intensity"))"
-            cell2.activityCategoryTimeSlider.value = timeManager.getTime("Average Intensity")
-            
+ 
             return cell2
             
         default:

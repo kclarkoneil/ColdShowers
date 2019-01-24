@@ -16,7 +16,6 @@ class ActivityTimePreferenceTableViewCell: UITableViewCell {
   
   //to save output
   let defaults = UserDefaults.standard
-  
   let timeManager = ActivityTimeManager()
   
   override func awakeFromNib() {
@@ -27,13 +26,5 @@ class ActivityTimePreferenceTableViewCell: UITableViewCell {
   override func setSelected(_ selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
     // Configure the view for the selected state
-  }
-  
-  @IBAction func activityCategoryTimeSliderAction(_ sender: UISlider) {
-    
-    activityCategoryTimeSlider.maximumValue = 10.0
-    activityTimeSliderLabel.text = String(timeManager.getTime("Average Intensity"))
-    timeManager.setTime("Average Intensity", value: Float(Int(self.activityCategoryTimeSlider.value)))
-    
   }
 }
