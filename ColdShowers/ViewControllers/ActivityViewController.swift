@@ -38,7 +38,7 @@ class ActivityViewController: UIViewController {
     var currentActivity = CoreActivity()
     var activityList = [CoreActivity]()
     var currentActivityIndex: Int = 0
-    var initialIntensity: Int = 0
+    var initialIntensity: Int?
     
     //MARK: SoundManager
     let soundManager = SoundManager()
@@ -83,9 +83,7 @@ class ActivityViewController: UIViewController {
         showActivity()
         
         //Error checking
-        if initialIntensity == 3 {
-        print("Initial intensity value passed")
-        }
+        
         for activity in activityList {
             print("\(activity.name)")
             print("\(activity.userPriority)")
@@ -95,6 +93,12 @@ class ActivityViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        print("view did appear")
+        if initialIntensity == 3 {
+            print("Initial intensity value passed")
+        }
     }
     
     //MARK: Button Actions

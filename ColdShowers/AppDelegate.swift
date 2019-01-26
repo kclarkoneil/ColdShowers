@@ -144,6 +144,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
   // Responds to action response, opening activity view controller
   func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
     
+    
     switch response.actionIdentifier {
     case "Snooze":
       print ("Snooze case hit")
@@ -154,6 +155,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     case UNNotificationDefaultActionIdentifier:
       print("Default action")
       let storyboard = UIStoryboard(name: "Activity", bundle: nil)
+    
       if let vc = storyboard.instantiateViewController(withIdentifier: "ActivityVC") as? ActivityViewController {
       vc.initialIntensity = 3
       self.window?.rootViewController = vc
