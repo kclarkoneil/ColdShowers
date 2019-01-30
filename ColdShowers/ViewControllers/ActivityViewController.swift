@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import UserNotifications
 class ActivityViewController: UIViewController {
     
     //MARK: ActivityView -- Timer Overlay Properties
@@ -72,6 +72,8 @@ class ActivityViewController: UIViewController {
         
         //MARK: will keep the workout screen active.
         UIApplication.shared.isIdleTimerDisabled = true
+        
+        //Obtain intensity and time from request.userInfo
         
         timerOverlayView.isHidden = true
         timerOverlayView.alpha = 0.0

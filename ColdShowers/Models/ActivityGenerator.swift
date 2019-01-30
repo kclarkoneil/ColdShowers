@@ -32,6 +32,7 @@ class ActivityGenerator: NSObject {
             
             baseArray = activity
             intensity = storedIntensity[0].desiredIntensity
+            
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
